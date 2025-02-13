@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Ensure Background GIF is Applied -->
+    <style>
+        body {
+            background: url('background.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine?</h1>
+        <div class="buttons">
+            <button class="yes-button" onclick="handleYesClick()">Yes</button>
+            <button class="no-button" onclick="handleNoClick()">No</button>
+        </div>
+        <div class="gif_container">
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Cute GIF">
+        </div>
+    </div>
+
+    <!-- Play Music Button -->
+    <button id="play-music-btn" onclick="document.getElementById('bg-music').play()">▶ Play Music</button>
+
+    <!-- Copyright Footer -->
+    <footer class="footer">
+        © Jusnie 2025
+    </footer>
+
+    <!-- Single Audio Element -->
+    <audio id="bg-music" src="music.mp3" loop></audio>
+
+    <script>
+        function handleYesClick() {
+            // Store the background GIF before navigating
+            localStorage.setItem("bgGif", "background.gif");
+
+            // Debugging log
+            console.log("Saved background GIF:", localStorage.getItem("bgGif"));
+
+            window.location.href = "yes_page.html";
+        }
+    </script>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Restore background GIF when returning to this page
+        window.addEventListener("DOMContentLoaded", function () {
+            const savedGif = localStorage.getItem("bgGif");
+            console.log("Retrieved background GIF:", savedGif);
+
+            if (savedGif) {
+                document.body.style.background = `url('${savedGif}') no-repeat center center fixed`;
+                document.body.style.backgroundSize = "cover";
+            } else {
+                console.warn("No background GIF found in localStorage.");
+            }
+        });
+    </script>
+
+</body>
+</html>
